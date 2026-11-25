@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yashu Studios — 24/7 WhatsApp AI Receptionist for Bengaluru Clinics</title>
+  <meta name="description" content="Instant 24/7 WhatsApp replies in English & Kannada, automated Google Calendar booking, and post-visit Google Review reminders for Bengaluru dental and skin clinics." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Smooth message entrance and typing dots animation */
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% {
+        transform: translateY(0);
+        opacity: 0.35;
+      }
+      40% {
+        transform: translateY(-3px);
+        opacity: 1;
+      }
+    }
+
+    .msg-animate {
+      animation: msgIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .typing-dot {
+      animation: dotBounce 1.15s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.16s;
+    }
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.32s;
+    }
+
+    /* Authentic light WhatsApp chat wallpaper */
+    .wa-chat-bg {
+      background-color: #EFEAE2;
+      background-image: radial-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    /* Sleek matte dark-titanium phone frame (strictly no green neon glow) */
+    .titanium-frame {
+      background: linear-gradient(145deg, #2C2C2E 0%, #1C1C1E 100%);
+      border: 1px solid #3A3A3C;
+      box-shadow: 0 24px 48px -16px rgba(15, 23, 42, 0.18), 0 8px 16px -8px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Subtle scrollbar inside chat viewport */
+    #chatMessages::-webkit-scrollbar {
+      width: 4px;
+    }
+    #chatMessages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #chatMessages::-webkit-scrollbar-thumb {
+      background: rgba(15, 23, 42, 0.15);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-white text-[#0F172A] font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
+
+  <!-- ===================================================================== -->
+  <!-- 1. TOP NAVIGATION (Plain text wordmark, no logo, no Customize button) -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <a href="#" class="font-bold text-base sm:text-lg text-[#0F172A] tracking-tight">
+        Yashu Studios
+      </a>
+
+      <a href="https://wa.me/919449885104?text=Hi%20Yashu%2C%20I%20saw%20the%20WhatsApp%20AI%20Assistant%20demo%20and%20would%20like%20to%20know%20more%20for%20my%20clinic."
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#059669] hover:bg-emerald-700 active:bg-emerald-800 transition-colors">
+        WhatsApp Us
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =================================================================== -->
+    <!-- 2. HERO SECTION (Pure white, centered, generous vertical breathing) -->
+    <!-- =================================================================== -->
+    <section class="min-h-[82vh] flex items-center py-20 sm:py-28 px-4 sm:px-6 bg-white border-b border-slate-200/80">
+      <div class="max-w-3xl mx-auto text-center">
+        <!-- Eyebrow Pill -->
+        <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#F8FAFC] border border-slate-200 text-xs sm:text-sm font-medium text-slate-600 mb-6">
+          For Bengaluru Dental &amp; Skin Clinics
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15] text-[#0F172A] mb-6">
+          Your Clinic Closes at 8 PM.
+          <span class="block text-[#059669] mt-1.5">Now Your WhatsApp Replies 24/7.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+          Instant replies in English &amp; Kannada, automated Google Calendar booking, and post-visit review reminders&mdash;directly on WhatsApp.
+        </p>
+
+        <!-- Primary & Secondary CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5">
+          <a href="https://wa.me/919449885104?text=Hi%20Yashu%2C%20I%20saw%20the%20WhatsApp%20AI%20Assistant%20demo%20and%20would%20like%20to%20know%20more%20for%20my%20clinic."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-[#059669] hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-colors">
+            Message on WhatsApp
+          </a>
+
+          <a href="#live-preview"
+            class="inline-flex items-center justify-center gap-1.5 px-6 py-3.5 rounded-xl text-sm sm:text-base font-semibold text-[#0F172A] bg-[#F8FAFC] hover:bg-slate-100 border border-slate-200 transition-colors">
+            See Live Preview &darr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 3. SCROLL-TRIGGERED INTERACTIVE WHATSAPP PREVIEW SECTION            -->
+    <!-- =================================================================== -->
+    <section id="live-preview" class="py-16 sm:py-24 px-4 sm:px-6 bg-[#F8FAFC] border-b border-slate-200/80">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[#0F172A] tracking-tight mb-3">
+            See How It Handles a Real Patient Message
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600">
+            Tap the interactive WhatsApp buttons below to experience an automated Kanglish enquiry and instant slot confirmation.
+          </p>
+        </div>
+
+        <!-- Centered Matte Dark-Titanium Phone Frame -->
+        <div class="flex flex-col items-center">
+          <div class="w-full max-w-[390px] rounded-[34px] p-2.5 titanium-frame">
+            <!-- Subtle Top Speaker Notch -->
+            <div class="flex justify-center pb-2 pt-0.5">
+              <div class="w-16 h-1.5 rounded-full bg-zinc-700/80"></div>
+            </div>
+
+            <!-- Inner Phone Screen -->
+            <div class="rounded-[24px] overflow-hidden bg-[#EFEAE2] flex flex-col">
+              <!-- WhatsApp Header -->
+              <div class="bg-[#075E54] px-4 py-3 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-9 h-9 rounded-full bg-white/15 text-white font-semibold text-xs flex items-center justify-center shrink-0">
+                    AI
+                  </div>
+                  <div class="min-w-0">
+                    <span class="font-semibold text-sm text-white block truncate">Clinic AI Assistant</span>
+                    <span id="waHeaderStatus" class="text-[11px] text-emerald-100/85 block truncate">online</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Authentic WhatsApp Chat Messages Container -->
+              <div id="chatMessages" class="wa-chat-bg p-3.5 h-[340px] overflow-y-auto space-y-2.5 text-xs sm:text-[13px]">
+                <!-- Remains clean until scrolled into view via IntersectionObserver -->
+              </div>
+
+              <!-- Bottom WhatsApp Input Bar (Live Character-by-Character Typing) -->
+              <div class="px-2.5 py-2.5 bg-[#F0F2F5] border-t border-slate-200/80 flex items-center gap-2">
+                <div class="flex-1 bg-white rounded-full px-3.5 py-2 text-xs flex items-center justify-between min-h-[36px] border border-slate-200/80 overflow-hidden">
+                  <span id="waInputPreview" class="truncate text-slate-400">Type a message</span>
+                  <span id="waInputCursor" class="hidden w-0.5 h-3.5 bg-slate-700 animate-pulse ml-0.5 shrink-0"></span>
+                </div>
+                <div id="waSendBtn" class="w-9 h-9 rounded-full bg-[#059669] text-white flex items-center justify-center shrink-0 transition-transform duration-150">
+                  <svg class="w-4 h-4 translate-x-[1px]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtle Live Status Pill Below Phone -->
+          <div id="syncStatusPill"
+            class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-xs sm:text-sm font-medium transition-all duration-300">
+            <span id="syncDot" class="w-2 h-2 rounded-full bg-slate-300 shrink-0 transition-colors"></span>
+            <span id="syncStatusText">Waiting for booking confirmation...</span>
+          </div>
+
+          <!-- Small Replay Button -->
+          <div class="mt-4">
+            <button id="replaySimBtn" type="button"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium border border-slate-200 transition-colors cursor-pointer">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>Replay</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 4. PROBLEM VS. SOLUTION SECTION (Factual, Respectful, 2-Column)     -->
+    <!-- =================================================================== -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 bg-white border-b border-slate-200/80">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[#0F172A] tracking-tight">
+            Problem vs. Solution
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <!-- Left Card: The Problem -->
+          <div class="rounded-2xl bg-[#F8FAFC] border border-slate-200 p-6 sm:p-8">
+            <h3 class="text-base sm:text-lg font-bold text-[#0F172A] pb-4 mb-6 border-b border-slate-200">
+              The Problem &mdash; Manual WhatsApp Handling
+            </h3>
+
+            <ul class="space-y-4 text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-slate-200/90 text-slate-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&minus;</span>
+                <span>After-hours enquiries wait until morning</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-slate-200/90 text-slate-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&minus;</span>
+                <span>Receptionists repeat the same fee, timing, and location answers daily</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-slate-200/90 text-slate-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&minus;</span>
+                <span>Manual scheduling risks double-bookings or missed follow-ups</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-slate-200/90 text-slate-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&minus;</span>
+                <span>Asking for Google Reviews gets forgotten during rush hours</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right Card: The Solution -->
+          <div class="rounded-2xl bg-white border border-emerald-200 p-6 sm:p-8">
+            <h3 class="text-base sm:text-lg font-bold text-[#0F172A] pb-4 mb-6 border-b border-emerald-100">
+              The Solution &mdash; 24/7 AI Receptionist
+            </h3>
+
+            <ul class="space-y-4 text-sm sm:text-[15px] text-slate-700 leading-relaxed">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-50 text-[#059669] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&#10003;</span>
+                <span>Replies in 3 seconds, 24/7, in natural English, Kannada, or Kanglish</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-50 text-[#059669] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&#10003;</span>
+                <span>Answers treatment FAQs and shares clinic location instantly</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-50 text-[#059669] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&#10003;</span>
+                <span>Checks real-time availability and logs bookings into Google Calendar &amp; Sheets</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-50 text-[#059669] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">&#10003;</span>
+                <span>Automatically sends a polite Google Review link after visits</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 5. 45-SECOND WALKTHROUGH VIDEO & FINAL CTA SECTION                  -->
+    <!-- =================================================================== -->
+    <section id="walkthrough" class="py-16 sm:py-24 px-4 sm:px-6 bg-[#F8FAFC]">
+      <div class="max-w-3xl mx-auto">
+        <div class="rounded-2xl bg-white border border-slate-200 p-6 sm:p-10 text-center">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[#0F172A] tracking-tight mb-3">
+            45-Second Full Workflow Walkthrough
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 mb-7">
+            See WhatsApp, Google Calendar, and Google Sheets working together in real time.
+          </p>
+
+          <!-- Clean 16:9 Light Video Container -->
+          <div class="aspect-video w-full rounded-xl bg-[#F8FAFC] border border-slate-200 overflow-hidden flex items-center justify-center mb-8">
+            <!-- PASTE YOUTUBE EMBED IFRAME HERE -->
+            <div class="p-6 text-center max-w-sm">
+              <div class="w-12 h-12 rounded-full bg-white border border-slate-200 text-[#059669] flex items-center justify-center mx-auto mb-4 shadow-xs">
+                <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <p class="text-sm font-semibold text-[#0F172A] mb-1">
+                45-Second Demo Video Coming Soon
+              </p>
+              <p class="text-xs sm:text-sm text-slate-500 mb-4">
+                Want to test the live AI receptionist directly on your phone right now?
+              </p>
+              <a href="https://wa.me/919449885104?text=Hi%20Yashu%2C%20I%20would%20like%20to%20try%20the%20live%20WhatsApp%20AI%20demo%20on%20my%20phone."
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-[#0F172A] text-xs font-semibold border border-slate-200 transition-colors">
+                Try Live Demo on WhatsApp &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Final CTA Button -->
+          <a href="https://wa.me/919449885104?text=Hi%20Yashu%2C%20I%20would%20like%20to%20book%20a%2010-minute%20live%20demo%20of%20the%20WhatsApp%20AI%20Receptionist%20for%20our%20clinic."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-[#059669] hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm sm:text-base px-7 py-3.5 rounded-xl transition-colors">
+            Book a 10-Minute Live Demo
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 6. MINIMAL FOOTER                                                     -->
+  <!-- ===================================================================== -->
+  <footer class="py-8 px-4 sm:px-6 bg-white border-t border-slate-200/80">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-slate-500">
+      <p>&copy; 2026 Yashu Studios</p>
+      <a href="https://wa.me/919449885104?text=Hi%20Yashu%2C%20I%20saw%20the%20WhatsApp%20AI%20Assistant%20demo%20and%20would%20like%20to%20know%20more%20for%20my%20clinic."
+        target="_blank" rel="noopener noreferrer"
+        class="font-medium text-slate-700 hover:text-[#059669] transition-colors">
+        WhatsApp: +91 94498 85104
+      </a>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE WHATSAPP SIMULATOR LOGIC (Scroll-Triggered)               -->
+  <!-- ===================================================================== -->
+  <script>
+    (function () {
+      let simRunId = 0;
+      let simTimers = [];
+      let hasAutoStarted = false;
+
+      /**
+       * Clears all active timeouts so replays never overlap.
+       */
+      function clearSimTimers() {
+        simTimers.forEach(function (id) {
+          clearTimeout(id);
+        });
+        simTimers = [];
+      }
+
+      /**
+       * Schedules a callback tied to the current simulation run ID.
+       */
+      function scheduleSim(fn, delay, runId) {
+        const id = setTimeout(function () {
+          if (runId === simRunId) fn();
+        }, delay);
+        simTimers.push(id);
+      }
+
+      /**
+       * Keeps the WhatsApp chat scrolled cleanly to the latest message.
+       */
+      function scrollChatBottom() {
+        const chat = document.getElementById('chatMessages');
+        if (chat) {
+          chat.scrollTop = chat.scrollHeight;
+        }
+      }
+
+      /**
+       * Updates the WhatsApp header status between 'online' and 'typing...'.
+       */
+      function setHeaderStatus(text, isTyping) {
+        const el = document.getElementById('waHeaderStatus');
+        if (!el) return;
+        el.textContent = text;
+        el.className = isTyping
+          ? 'text-[11px] text-emerald-200 font-semibold block truncate'
+          : 'text-[11px] text-emerald-100/85 block truncate';
+      }
+
+      /**
+       * Resets or activates the Calendar & Sheets sync pill below the phone.
+       */
+      function setSyncStatus(isSynced) {
+        const pill = document.getElementById('syncStatusPill');
+        const dot = document.getElementById('syncDot');
+        const text = document.getElementById('syncStatusText');
+        if (!pill || !dot || !text) return;
+
+        if (isSynced) {
+          pill.className = 'mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-semibold transition-all duration-300 msg-animate';
+          dot.className = 'w-2 h-2 rounded-full bg-[#059669] shrink-0';
+          text.textContent = '✓ Synced to Google Calendar & Google Sheets';
+        } else {
+          pill.className = 'mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-500 text-xs sm:text-sm font-medium transition-all duration-300';
+          dot.className = 'w-2 h-2 rounded-full bg-slate-300 shrink-0';
+          text.textContent = 'Tap a WhatsApp button above to confirm a slot';
+        }
+      }
+
+      /**
+       * Displays an animated 3-dot AI typing bubble inside the chat.
+       */
+      function showAiTypingBubble() {
+        const chat = document.getElementById('chatMessages');
+        if (!chat) return;
+        hideAiTypingBubble();
+
+        const bubble = document.createElement('div');
+        bubble.id = 'aiTypingBubble';
+        bubble.className = 'flex justify-start msg-animate';
+        bubble.innerHTML =
+          '<div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-sm shadow-xs border border-slate-200/80 flex items-center gap-1.5">' +
+          '<span class="w-1.5 h-1.5 rounded-full bg-slate-400 typing-dot"></span>' +
+          '<span class="w-1.5 h-1.5 rounded-full bg-slate-400 typing-dot"></span>' +
+          '<span class="w-1.5 h-1.5 rounded-full bg-slate-400 typing-dot"></span>' +
+          '</div>';
+        chat.appendChild(bubble);
+        scrollChatBottom();
+      }
+
+      function hideAiTypingBubble() {
+        const existing = document.getElementById('aiTypingBubble');
+        if (existing) existing.remove();
+      }
+
+      /**
+       * Types the patient's message character-by-character in the bottom input bar,
+       * animates the send button, and fires the completion callback.
+       */
+      function typeInInputBar(text, durationMs, runId, onComplete) {
+        const inputPreview = document.getElementById('waInputPreview');
+        const inputCursor = document.getElementById('waInputCursor');
+        const sendBtn = document.getElementById('waSendBtn');
+        if (!inputPreview || !inputCursor || !sendBtn) return;
+
+        inputPreview.classList.remove('text-slate-400');
+        inputPreview.classList.add('text-[#0F172A]');
+        inputCursor.classList.remove('hidden');
+
+        const stepMs = Math.max(20, Math.floor(durationMs / text.length));
+        for (let i = 1; i <= text.length; i++) {
+          (function (idx) {
+            scheduleSim(function () {
+              inputPreview.textContent = text.slice(0, idx);
+            }, idx * stepMs, runId);
+          })(i);
+        }
+
+        scheduleSim(function () {
+          sendBtn.classList.add('scale-90');
+          scheduleSim(function () {
+            sendBtn.classList.remove('scale-90');
+          }, 120, runId);
+
+          inputPreview.textContent = 'Type a message';
+          inputPreview.classList.remove('text-[#0F172A]');
+          inputPreview.classList.add('text-slate-400');
+          inputCursor.classList.add('hidden');
+          if (onComplete) onComplete();
+        }, text.length * stepMs + 220, runId);
+      }
+
+      /**
+       * Disables previously clicked interactive WhatsApp buttons so the flow stays clean.
+       */
+      function disableActiveButtons() {
+        const wrap = document.getElementById('activeInteractiveBtns');
+        if (wrap) {
+          wrap.querySelectorAll('button').forEach(function (btn) {
+            btn.disabled = true;
+          });
+          wrap.classList.add('opacity-50', 'pointer-events-none');
+          wrap.removeAttribute('id');
+        }
+      }
+
+      /**
+       * Confirms the chosen slot, replies as AI, and activates the Calendar & Sheets sync pill.
+       */
+      window.handleConfirmSlot = function (slotTime) {
+        const runId = simRunId;
+        const chat = document.getElementById('chatMessages');
+        if (!chat) return;
+
+        disableActiveButtons();
+
+        chat.insertAdjacentHTML(
+          'beforeend',
+          '<div class="flex justify-end msg-animate">' +
+            '<div class="bg-[#D9FDD3] text-[#0F172A] px-3.5 py-2 rounded-2xl rounded-tr-sm shadow-xs max-w-[85%]">' +
+              '<p class="font-medium">&#9989; Confirm ' + slotTime + '</p>' +
+              '<span class="text-[10px] text-slate-500 block text-right mt-1">9:42 PM <span class="text-sky-500 font-semibold">&#10003;&#10003;</span></span>' +
+            '</div>' +
+          '</div>'
+        );
+        scrollChatBottom();
+
+        scheduleSim(function () {
+          setHeaderStatus('typing...', true);
+          showAiTypingBubble();
+        }, 220, runId);
+
+        scheduleSim(function () {
+          hideAiTypingBubble();
+          setHeaderStatus('online', false);
+          chat.insertAdjacentHTML(
+            'beforeend',
+            '<div class="flex justify-start msg-animate">' +
+              '<div class="bg-white text-[#0F172A] px-3.5 py-2.5 rounded-2xl rounded-tl-sm shadow-xs max-w-[90%] border border-slate-200/80">' +
+                '<p class="font-semibold text-[#0F172A]">Booking Confirmed &#10003;</p>' +
+                '<p class="mt-1 text-slate-600 leading-relaxed">Your <strong class="text-[#0F172A]">Teeth Cleaning</strong> appointment is confirmed for <strong class="text-[#0F172A]">Tomorrow at ' + slotTime + '</strong>. We will send a reminder 2 hours before your visit.</p>' +
+                '<span class="text-[10px] text-slate-400 block text-right mt-1">9:42 PM</span>' +
+              '</div>' +
+            '</div>'
+          );
+          scrollChatBottom();
+          setSyncStatus(true);
+        }, 900, runId);
+      };
+
+      /**
+       * Shows two alternative clickable slots (11:30 AM and 5:30 PM) inside the chat.
+       */
+      window.handleOtherSlots = function () {
+        const runId = simRunId;
+        const chat = document.getElementById('chatMessages');
+        if (!chat) return;
+
+        disableActiveButtons();
+
+        chat.insertAdjacentHTML(
+          'beforeend',
+          '<div class="flex justify-end msg-animate">' +
+            '<div class="bg-[#D9FDD3] text-[#0F172A] px-3.5 py-2 rounded-2xl rounded-tr-sm shadow-xs max-w-[85%]">' +
+              '<p class="font-medium">&#128338; Other Slots</p>' +
+              '<span class="text-[10px] text-slate-500 block text-right mt-1">9:42 PM <span class="text-sky-500 font-semibold">&#10003;&#10003;</span></span>' +
+            '</div>' +
+          '</div>'
+        );
+        scrollChatBottom();
+
+        scheduleSim(function () {
+          setHeaderStatus('typing...', true);
+          showAiTypingBubble();
+        }, 220, runId);
+
+        scheduleSim(function () {
+          hideAiTypingBubble();
+          setHeaderStatus('online', false);
+          chat.insertAdjacentHTML(
+            'beforeend',
+            '<div class="flex justify-start msg-animate">' +
+              '<div class="bg-white text-[#0F172A] rounded-2xl rounded-tl-sm shadow-xs max-w-[90%] border border-slate-200/80 overflow-hidden">' +
+                '<div class="px-3.5 py-2.5">' +
+                  '<p class="leading-relaxed">Sure! Here are two other open slots tomorrow. Tap one to confirm:</p>' +
+                  '<span class="text-[10px] text-slate-400 block text-right mt-1">9:42 PM</span>' +
+                '</div>' +
+                '<div id="activeInteractiveBtns" class="border-t border-slate-200/80 divide-y divide-slate-200/80 bg-slate-50/70">' +
+                  '<button type="button" onclick="handleConfirmSlot(\'11:30 AM\')" class="w-full py-2.5 px-3 text-center font-semibold text-[#027EB5] hover:bg-slate-100 active:bg-slate-200/70 transition-colors cursor-pointer">11:30 AM</button>' +
+                  '<button type="button" onclick="handleConfirmSlot(\'5:30 PM\')" class="w-full py-2.5 px-3 text-center font-semibold text-[#027EB5] hover:bg-slate-100 active:bg-slate-200/70 transition-colors cursor-pointer">5:30 PM</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>'
+          );
+          scrollChatBottom();
+        }, 900, runId);
+      };
+
+      /**
+       * Runs the full automated Kanglish patient enquiry & AI response sequence.
+       */
+      function playSimulation() {
+        clearSimTimers();
+        simRunId++;
+        const runId = simRunId;
+
+        const chat = document.getElementById('chatMessages');
+        const inputPreview = document.getElementById('waInputPreview');
+        const inputCursor = document.getElementById('waInputCursor');
+        if (!chat || !inputPreview || !inputCursor) return;
+
+        chat.innerHTML = '';
+        setSyncStatus(false);
+        setHeaderStatus('online', false);
+        inputPreview.textContent = 'Type a message';
+        inputPreview.className = 'truncate text-slate-400';
+        inputCursor.classList.add('hidden');
+
+        const patientText = 'Hi, teeth cleaning cost yestu? Tomorrow 4 PM free idya?';
+
+        scheduleSim(function () {
+          typeInInputBar(patientText, 1350, runId, function () {
+            // Patient Kanglish message bubble
+            chat.insertAdjacentHTML(
+              'beforeend',
+              '<div class="flex justify-end msg-animate">' +
+                '<div class="bg-[#D9FDD3] text-[#0F172A] px-3.5 py-2 rounded-2xl rounded-tr-sm shadow-xs max-w-[86%]">' +
+                  '<p class="leading-snug">' + patientText + '</p>' +
+                  '<span class="text-[10px] text-slate-500 block text-right mt-1">9:42 PM <span class="text-sky-500 font-semibold">&#10003;&#10003;</span></span>' +
+                '</div>' +
+              '</div>'
+            );
+            scrollChatBottom();
+
+            // AI typing state
+            scheduleSim(function () {
+              setHeaderStatus('typing...', true);
+              showAiTypingBubble();
+            }, 280, runId);
+
+            // AI reply card with interactive WhatsApp buttons
+            scheduleSim(function () {
+              hideAiTypingBubble();
+              setHeaderStatus('online', false);
+              chat.insertAdjacentHTML(
+                'beforeend',
+                '<div class="flex justify-start msg-animate">' +
+                  '<div class="bg-white text-[#0F172A] rounded-2xl rounded-tl-sm shadow-xs max-w-[92%] border border-slate-200/80 overflow-hidden">' +
+                    '<div class="px-3.5 py-2.5">' +
+                      '<p class="leading-relaxed">Hi! Teeth Cleaning starts at <strong>&#8377;1,200</strong>, and <strong>Tomorrow at 4:00 PM</strong> is available. Would you like me to book this slot?</p>' +
+                      '<span class="text-[10px] text-slate-400 block text-right mt-1">9:42 PM</span>' +
+                    '</div>' +
+                    '<div id="activeInteractiveBtns" class="border-t border-slate-200/80 divide-y divide-slate-200/80 bg-slate-50/70">' +
+                      '<button type="button" onclick="handleConfirmSlot(\'4:00 PM\')" class="w-full py-2.5 px-3 text-center font-semibold text-[#027EB5] hover:bg-slate-100 active:bg-slate-200/70 transition-colors cursor-pointer">&#9989; Confirm 4:00 PM</button>' +
+                      '<button type="button" onclick="handleOtherSlots()" class="w-full py-2.5 px-3 text-center font-medium text-[#027EB5] hover:bg-slate-100 active:bg-slate-200/70 transition-colors cursor-pointer">&#128338; Other Slots</button>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>'
+              );
+              scrollChatBottom();
+            }, 1250, runId);
+          });
+        }, 220, runId);
+      }
+
+      // Wire up Replay button
+      const replayBtn = document.getElementById('replaySimBtn');
+      if (replayBtn) {
+        replayBtn.addEventListener('click', function () {
+          hasAutoStarted = true;
+          playSimulation();
+        });
+      }
+
+      // Start simulation ONLY when user scrolls to the preview section
+      window.addEventListener('DOMContentLoaded', function () {
+        const previewSection = document.getElementById('live-preview');
+        if (!previewSection || !('IntersectionObserver' in window)) return;
+
+        try {
+          const observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting && !hasAutoStarted) {
+                  hasAutoStarted = true;
+                  playSimulation();
+                  observer.disconnect();
+                }
+              });
+            },
+            { threshold: 0.35 }
+          );
+          observer.observe(previewSection);
+        } catch (err) {
+          // Fallback: allow manual replay if observer fails
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
